@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Args, Float, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
+import { FoodOfferingService } from './food-offeringservice.service';
 import { FoodOffering } from './models/food-offering.model';
 
 export class FoodOfferingsResolver {
-  constructor() {}
+  constructor(private readonly foodOfferingService: FoodOfferingService) {}
 
   @Query(returns => [FoodOffering])
   async foodOfferings(@Args({name: 'location', type: () => [Float]}) location: number[]): Promise<FoodOffering[]> {
@@ -29,5 +30,16 @@ export class FoodOfferingsResolver {
     ));
     console.log(offerings);
     return offerings;
+  }
+
+  @Mutation(returns => FoodOffering)
+  async createFoodOffering(): Promise<FoodOffering> {
+    const foodOffering = new FoodOffering(
+        '1',
+        'Food Offering 1',
+        [1, 2, 3],
+        'Food Category 1'
+    );
+    return await this.foodOfferingService.createFoodOffering(foodOffering);
   }
 }

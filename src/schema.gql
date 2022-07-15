@@ -20,6 +20,10 @@ type FoodOffering {
   title: String!
 }
 
+type Mutation {
+  createFoodOffering: FoodOffering!
+}
+
 type Query {
   foodOfferings(location: [Float!]!): [FoodOffering!]!
 }
