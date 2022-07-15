@@ -17,18 +17,21 @@ import { FoodOffering } from './food-offerings/models/food-offering.model';
             autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
             sortSchema: true,
         }),
-        TypeOrmModule.forRoot({
-            type: 'postgres',
-            host: 'localhost',
-            port: 5433,
-            username: 'postgres',
-            password: 'postgres',
-            database: 'postgres',
-            entities: [FoodOffering],
-            synchronize: true,
-        }),
     ],
     controllers: [],
     providers: [FoodOfferingService, AppService],
 })
-export class AppModule {}
+export class AppModule {
+    static forRoot(settings: SaNuCoSettings): DynamicModule {
+        return {
+            module: AppModule,
+            imports: [
+                // This module has a ConfigurationService, which
+                // does the same as described in the docs
+                // but it does not read the env file.
+                AppSettingsModule.forRoot(settings),
+                DatabaseModule.forRoot(settings)
+            ]
+        };
+    }
+}
