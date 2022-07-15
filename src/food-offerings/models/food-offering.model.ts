@@ -20,7 +20,7 @@ export class FoodOffering {
   @Column()
   @Field((type) => String, { description: 'food offering name' })
   title: string;
-  @Column()
+  @Column({ nullable: true })
   @Field((type) => String, { description: 'food offering description' })
   picture: string;
   @Column('float', {array: true})

@@ -45,7 +45,7 @@ export class FoodOfferingsResolver {
         'Food Offering 1',
         [1, 2, 3],
         'Food Category 1',
-        'abcd'
+        //'abcd'
     );
     return await this.foodOfferingRepository.save(foodOffering);
     //return await this.foodOfferingService.createFoodOffering(foodOffering);
