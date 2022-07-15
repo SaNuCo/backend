@@ -1,2 +1,2 @@
-# Foodoo-backend
-Backend for the Foodoo app
+# SaNuCo backend
+Backend for the Salat, Nudeln und Co (SaNuCo) app
