@@ -24,7 +24,7 @@ import { FoodOffering } from './food-offerings/models/food-offering.model';
             username: 'postgres',
             password: 'postgres',
             database: 'postgres',
-            entities: [FoodOffering],
+            entities: [__dirname + '/**/*.model.{js,ts}'],
             synchronize: true,
         }),
     ],
