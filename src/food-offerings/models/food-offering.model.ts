@@ -1,16 +1,17 @@
 /* eslint-disable prettier/prettier */
 import { Field, ID, ObjectType, Float } from '@nestjs/graphql';
-import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 @ObjectType({ description: 'food offering ' })
 export class FoodOffering {
   
-  constructor (id: string, title: string, location: number[], category: string) {
+  constructor (id: string, title: string, location: number[], category: string, picture?: string) {
     this.id = id;
     this.title = title;
     this.location = location;
     this.category = category;
+    this.picture = picture;
   }
   
   @PrimaryGeneratedColumn()
@@ -22,7 +23,7 @@ export class FoodOffering {
   @Column()
   @Field((type) => String, { description: 'food offering description' })
   picture: string;
-  @Column()
+  @Column('float', {array: true})
   @Field((type) => [Float], { description: 'location of the food offering' })
   location: number[];
   @Column()

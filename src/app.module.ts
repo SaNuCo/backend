@@ -7,6 +7,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { FoodOffering } from './food-offerings/models/food-offering.model';
 
 @Module({
     imports: [
@@ -23,7 +24,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             username: 'postgres',
             password: 'postgres',
             database: 'postgres',
-            entities: [],
+            entities: [FoodOffering],
             synchronize: true,
         }),
     ],

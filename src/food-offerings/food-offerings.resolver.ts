@@ -1,11 +1,17 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Args, Float, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { FoodOfferingService } from './food-offeringservice.service';
 import { FoodOffering } from './models/food-offering.model';
 
 export class FoodOfferingsResolver {
-  constructor(private readonly foodOfferingService: FoodOfferingService) {}
+  constructor(
+    @InjectRepository(FoodOffering)
+    private foodOfferingRepository: Repository<FoodOffering>,
+    //private readonly foodOfferingService: FoodOfferingService
+    ) {}
 
   @Query(returns => [FoodOffering])
   async foodOfferings(@Args({name: 'location', type: () => [Float]}) location: number[]): Promise<FoodOffering[]> {
@@ -38,8 +44,10 @@ export class FoodOfferingsResolver {
         '1',
         'Food Offering 1',
         [1, 2, 3],
-        'Food Category 1'
+        'Food Category 1',
+        'abcd'
     );
-    return await this.foodOfferingService.createFoodOffering(foodOffering);
+    return await this.foodOfferingRepository.save(foodOffering);
+    //return await this.foodOfferingService.createFoodOffering(foodOffering);
   }
 }

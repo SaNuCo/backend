@@ -13,6 +13,6 @@ export class FoodOfferingService {
     ) {}
 
     async createFoodOffering(foodOffering: FoodOffering): Promise<FoodOffering> {
-        return this.foodOfferingRepository.save(foodOffering);
+        return await this.foodOfferingRepository.save(foodOffering);
     }
 }
