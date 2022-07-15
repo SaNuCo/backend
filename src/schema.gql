@@ -1,0 +1,25 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""food offering """
+type FoodOffering {
+  """food category"""
+  category: String!
+
+  """food offering id"""
+  id: ID!
+
+  """location of the food offering"""
+  location: [Float!]!
+
+  """food offering description"""
+  picture: String!
+
+  """food offering name"""
+  title: String!
+}
+
+type Query {
+  foodOfferings(location: [Float!]!): [FoodOffering!]!
+}
